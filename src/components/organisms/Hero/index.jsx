@@ -48,8 +48,8 @@ export const Hero = () => {
             >
                 <NavBar />
                 {backgroundMovie && (
-                    <div className='hero-details pt-44 mx-24'>
-                        <div className="background-movie-details w-2/5">
+                    <div className='hero-details pt-44 max-[1024px]:pt-24 mx-24'>
+                        <div className="background-movie-details w-2/5 max-[768px]:w-full max-[1024px]:text-center">
                             <h2 className='text-5xl'>{backgroundMovie.title}</h2>
                             <div className="flex my-3 text-xs items-center ">
                                 <div className="flex items-center my-5">
@@ -62,7 +62,7 @@ export const Hero = () => {
                                 </div>
                             </div>
                             <p className='text-xl'>{backgroundMovie.overview}</p>
-                            <div className='flex items-center my-5'>
+                            <div className='flex items-center my-5 max-[1024px]:my-auto max-[1024px]:mx-auto'>
                                 <a className=' flex items-center play-btn text-white text-xl bg-[#BE123C]'>
                                     <img src={Play} className='play-btn-img' />
                                     WATCH TRAILLER
