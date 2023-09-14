@@ -48,10 +48,10 @@ export const Hero = () => {
             >
                 <NavBar />
                 {backgroundMovie && (
-                    <div className='hero-details pt-44 max-[1024px]:pt-24 mx-24'>
-                        <div className="background-movie-details w-2/5 max-[768px]:w-full max-[1024px]:text-center">
+                    <div className='hero-details pt-44 max-[1024px]:pt-24 max-[1024px]:pt-24 mx-24'>
+                        <div className="background-movie-details w-1/2  max-[1024px]:w-full max-[768px]:text-center">
                             <h2 className='text-5xl'>{backgroundMovie.title}</h2>
-                            <div className="flex my-3 text-xs items-center ">
+                            <div className="flex my-3 text-xs items-center max-[768px]:justify-center">
                                 <div className="flex items-center my-5">
                                     <img src={IMOB} alt="IMOB" className='w-20' />
                                     <span className="ml-6 text-lg">{backgroundMovie.vote_average * 10}.0/ 100</span>
@@ -62,7 +62,7 @@ export const Hero = () => {
                                 </div>
                             </div>
                             <p className='text-xl'>{backgroundMovie.overview}</p>
-                            <div className='flex items-center my-5 max-[1024px]:my-auto max-[1024px]:mx-auto'>
+                            <div className='flex items-center my-5 max-[768px]:justify-center'>
                                 <a className=' flex items-center play-btn text-white text-xl bg-[#BE123C]'>
                                     <img src={Play} className='play-btn-img' />
                                     WATCH TRAILLER
