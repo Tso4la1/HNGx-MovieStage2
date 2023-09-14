@@ -49,9 +49,9 @@ export const Hero = () => {
                 <NavBar />
                 {backgroundMovie && (
                     <div className='hero-details pt-32 mx-24'>
-                        <div className="background-movie-details w-1/2  max-[1024px]:w-full max-[768px]:text-center">
+                        <div className="background-movie-details w-1/2  max-[1024px]:w-full">
                             <h2 className='text-5xl'>{backgroundMovie.title}</h2>
-                            <div className="flex my-3 text-xs items-center max-[768px]:justify-center">
+                            <div className="flex my-3 text-xs items-center">
                                 <div className="flex items-center my-5">
                                     <img src={IMOB} alt="IMOB" className='w-20' />
                                     <span className="ml-6 text-lg">{backgroundMovie.vote_average * 10}.0/ 100</span>
