@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import IMOB from "./../../../assets/IMOB.png";
 import cherry from "./../../../assets/strawberry.png";
 import { Icon } from "../../atoms/Icons";
+import "./index.css"
 
 
 export const MovieCard = () => {
@@ -21,7 +22,7 @@ export const MovieCard = () => {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTg1ZDEzNDIzMTc4YTY4ZTk0OWU5NDUwYWQ2NTg3OCIsInN1YiI6IjY0OTc2MDA3OTU1YzY1MDBhYzg4ZjRkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I3905bVsCWrmqEIxaGU6uV6zLfPC8Yhsxk8s_aDpugA",
+                Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`,
             },
         };
 
@@ -69,7 +70,7 @@ export const MovieCard = () => {
                     <Icon name="arrow-right" />
                 </div>
             </div>
-            <p className="text-black">Favourite</p>
+            <h3 className="text-black favorite">TV SERIES</h3>
             <div className="flex gap-x-8 main-div mx-24 max-[500px]:mx-0 max-[768px]:mx-0 max-[980px]:mx-10">
                 <div className="w-full p-2 overflow-x-auto">
                     <ol className="grid grid-cols-4 max-[980px]:grid-cols-3 max-[768px]:grid-cols-2 max-[500px]:grid-cols-1 gap-6 max-[982px]:gap-2 ">

@@ -1,0 +1,10 @@
+.favorite {
+  background-color: #f3f4f675;
+  position: relative;
+  top: 86px;
+  left: 112px;
+  padding: 5px;
+  width: 6%;
+  border-radius: 12px;
+  font-weight: 600;
+}
