@@ -48,7 +48,7 @@ export const Hero = () => {
             >
                 <NavBar />
                 {backgroundMovie && (
-                    <div className='hero-details pt-44 max-[1024px]:pt-24 max-[1024px]:pt-24 mx-24'>
+                    <div className='hero-details pt-32 mx-24'>
                         <div className="background-movie-details w-1/2  max-[1024px]:w-full max-[768px]:text-center">
                             <h2 className='text-5xl'>{backgroundMovie.title}</h2>
                             <div className="flex my-3 text-xs items-center max-[768px]:justify-center">
