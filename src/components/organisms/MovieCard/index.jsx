@@ -64,7 +64,7 @@ export const MovieCard = () => {
 
     return (
         <>
-            <div className="text-black mx-32 flex justify-between items-center pt-16">
+            <div className=" movie-card-header text-black flex justify-between items-center">
                 <h2 className="text-2xl font-bold">Featured Movie</h2>
                 <div className="text-[#BE123C] flex justify between items-center">
                     <p>See more</p>
