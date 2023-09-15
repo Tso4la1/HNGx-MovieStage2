@@ -134,11 +134,11 @@ export const Icon = (props) => {
                         <feComposite
                             in2="SourceAlpha"
                             operator="in"
-                            result="effect1_backgroundBlur_24298_401"
+                            result="effect1_backgroundBlur_29583_421"
                         />
                         <feBlend
                             in="SourceGraphic"
-                            in2="effect1_backgroundBlur_24298_401"
+                            in2="effect1_backgroundBlur_29583_421"
                             result="shape"
                         />
                     </filter>

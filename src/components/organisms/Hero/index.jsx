@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavBar } from '../NavBar';
-import IMOB from "./../../../assets/Big-IMOB.png";
-import cherry from "./../../../assets/Big-Cherry.png";
+import IMOB from "./Images/Big-IMOB.png";
+import cherry from "./Images/Big-Cherry.png";
 import "./index.scss";
 import Play from "./../../../assets/Play1.png";
 
