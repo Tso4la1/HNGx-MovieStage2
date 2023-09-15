@@ -3,7 +3,7 @@ import IMOB from "./../../../assets/IMOB.png";
 import cherry from "./../../../assets/strawberry.png";
 import favorite from "./../../../assets/favorite.png";
 import { Icon } from "../../atoms/Icons";
-import "./index.css"
+import "./index.scss"
 
 
 export const MovieCard = () => {

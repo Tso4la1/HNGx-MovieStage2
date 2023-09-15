@@ -1,0 +1,36 @@
+.favorite {
+  background-color: #f3f4f675;
+  position: relative;
+  top: 95px;
+  left: 112px;
+  padding: 5px;
+  width: 6%;
+  border-radius: 12px;
+  font-weight: 600;
+
+  @media screen and (max-width: 1226px) {
+    width: 8%;
+  }
+
+  @media screen and (max-width: 980px) {
+    width: 10%;
+    left: 70px;
+  }
+
+  @media screen and (max-width: 768px) {
+    left: 45px;
+    width: 11%;
+  }
+
+  @media screen and (max-width: 690px) {
+    width: 14%;
+  }
+
+  @media screen and (max-width: 546px) {
+    width: 18%;
+  }
+
+  @media screen and (max-width: 524px) {
+    width: 24%;
+  }
+}
