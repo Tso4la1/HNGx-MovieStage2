@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import IMOB from "./../../../assets/IMOB.png";
 import cherry from "./../../../assets/strawberry.png";
+import favorite from "./../../../assets/favorite.png";
 import { Icon } from "../../atoms/Icons";
 import "./index.css"
 
@@ -63,7 +64,7 @@ export const MovieCard = () => {
 
     return (
         <>
-            <div className="text-black mx-32 flex justify-between items-center py-16">
+            <div className="text-black mx-32 flex justify-between items-center pt-16">
                 <h2 className="text-2xl font-bold">Featured Movie</h2>
                 <div className="text-[#BE123C] flex justify between items-center">
                     <p>See more</p>
@@ -78,7 +79,7 @@ export const MovieCard = () => {
                             <div className="div-sect" key={movie.id} data-testid="movie-card">
                                 <li className="p-4 mb-2 text-white">
                                     <div className="movie-box">
-                                        <Icon name="favorite" className="float-right relative top-12 mr-5" />
+                                        <img src={favorite} className="float-right relative top-12 mr-5" />
                                         <img
                                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                             alt={movie.title}

@@ -43,15 +43,15 @@ export const Hero = () => {
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
-                    height: '90vh',
+                    // height: '90vh',
                 }}
             >
                 <NavBar />
                 {backgroundMovie && (
-                    <div className='hero-details pt-32 mx-24'>
-                        <div className="background-movie-details w-1/2  max-[1024px]:w-full">
-                            <h2 className='text-5xl'>{backgroundMovie.title}</h2>
-                            <div className="flex my-3 text-xs items-center">
+                    <div className='hero-details'>
+                        <div className="background-movie-details">
+                            <h2 className='title'>{backgroundMovie.title}</h2>
+                            <div className="flex text-xs items-center">
                                 <div className="flex items-center my-5">
                                     <img src={IMOB} alt="IMOB" className='w-20' />
                                     <span className="ml-6 text-lg">{backgroundMovie.vote_average * 10}.0/ 100</span>
@@ -61,7 +61,7 @@ export const Hero = () => {
                                     <span className='text-lg'>{backgroundMovie.vote_average * 100 / 10}%</span>
                                 </div>
                             </div>
-                            <p className='text-xl'>{backgroundMovie.overview}</p>
+                            <p className='overview'>{backgroundMovie.overview}</p>
                             <div className='flex items-center my-5 max-[768px]:justify-center'>
                                 <a className=' flex items-center play-btn text-white text-xl bg-[#BE123C]'>
                                     <img src={Play} className='play-btn-img' />
