@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const apiUrl = 'https://api.themoviedb.org/3';
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey = '5875295ffa7a025202b7685ccfb682ed';
 
 
 

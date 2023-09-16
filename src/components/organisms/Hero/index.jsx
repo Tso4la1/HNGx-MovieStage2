@@ -15,7 +15,7 @@ export const Hero = ({ onSearch }) => {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const apiKey = import.meta.env.VITE_API_KEY;
+                const apiKey = '5875295ffa7a025202b7685ccfb682ed';
                 const response = await axios.get(
                     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&language=en-US&page=1`
                 );

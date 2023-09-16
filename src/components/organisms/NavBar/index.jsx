@@ -5,7 +5,7 @@ import './index.scss';
 import logo from './../../../assets/tv.png';
 
 const apiUrl = 'https://api.themoviedb.org/3';
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey = '5875295ffa7a025202b7685ccfb682ed';
 
 export const NavBar = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');

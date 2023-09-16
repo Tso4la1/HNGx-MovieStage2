@@ -27,7 +27,7 @@ export const MovieCard = () => {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`,
+                Authorization: `Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTg1ZDEzNDIzMTc4YTY4ZTk0OWU5NDUwYWQ2NTg3OCIsInN1YiI6IjY0OTc2MDA3OTU1YzY1MDBhYzg4ZjRkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I3905bVsCWrmqEIxaGU6uV6zLfPC8Yhsxk8s_aDpugA`,
             },
         };
 
@@ -40,7 +40,7 @@ export const MovieCard = () => {
                         method: "GET",
                         headers: {
                             accept: "application/json",
-                            Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTg1ZDEzNDIzMTc4YTY4ZTk0OWU5NDUwYWQ2NTg3OCIsInN1YiI6IjY0OTc2MDA3OTU1YzY1MDBhYzg4ZjRkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I3905bVsCWrmqEIxaGU6uV6zLfPC8Yhsxk8s_aDpugA",
+                            Authorization: "Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTg1ZDEzNDIzMTc4YTY4ZTk0OWU5NDUwYWQ2NTg3OCIsInN1YiI6IjY0OTc2MDA3OTU1YzY1MDBhYzg4ZjRkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I3905bVsCWrmqEIxaGU6uV6zLfPC8Yhsxk8s_aDpugA",
                         },
                     };
 
@@ -70,7 +70,7 @@ export const MovieCard = () => {
 
         const fetchDefaultMovies = async () => {
             try {
-                const apiKey = import.meta.env.VITE_API_KEY;
+                const apiKey = '5875295ffa7a025202b7685ccfb682ed';
                 const response = await axios.get(
                     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&language=en-US&page=1`
                 );
