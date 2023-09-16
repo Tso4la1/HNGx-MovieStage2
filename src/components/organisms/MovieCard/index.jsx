@@ -4,13 +4,14 @@ import cherry from "./../../../assets/strawberry.png"
 import favorite from "./../../../assets/Favorite.png";
 import { Icon } from "../../atoms/Icons";
 import "./index.scss"
+import { Link } from "react-router-dom";
 
 
 export const MovieCard = () => {
     const [movies, setMovies] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [displayedMovies, setDisplayedMovies] = useState([]);
-    // const [backgroundMovie, setBackgroundMovie] = useState(null);
+
 
     const countryAbbreviations = {
         "United States of America": "USA",
@@ -66,7 +67,7 @@ export const MovieCard = () => {
 
 
     useEffect(() => {
-        // Fetch the default 10 movies
+
         const fetchDefaultMovies = async () => {
             try {
                 const apiKey = import.meta.env.VITE_API_KEY;
@@ -76,7 +77,7 @@ export const MovieCard = () => {
 
                 const randomMovies = response.data.results.slice(0, 10);
                 setMovies(randomMovies);
-                setDisplayedMovies(randomMovies); // Set default movies
+                setDisplayedMovies(randomMovies);
                 const randomMovie =
                     randomMovies[Math.floor(Math.random() * randomMovies.length)];
                 setDisplayedMovies(randomMovie);
@@ -88,7 +89,7 @@ export const MovieCard = () => {
         fetchDefaultMovies();
     }, []);
 
-    // When searchQuery changes, update displayed movies
+
     useEffect(() => {
         if (searchQuery) {
             const filteredMovies = movies.filter((movie) =>
@@ -96,7 +97,7 @@ export const MovieCard = () => {
             );
             setDisplayedMovies(filteredMovies);
         } else {
-            // If search query is empty, display default movies
+
             setDisplayedMovies(movies);
         }
     }, [searchQuery, movies]);
@@ -115,7 +116,7 @@ export const MovieCard = () => {
                 <div className="w-full p-2 overflow-x-auto">
                     <ol className="grid grid-cols-4 max-[980px]:grid-cols-3 max-[768px]:grid-cols-2 max-[500px]:grid-cols-1 gap-6 max-[982px]:gap-2 ">
                         {displayedMovies.map((movie) => (
-                            <div className="div-sect" key={movie.id} data-testid="movie-card">
+                            <Link to={`/movies/${movie.id}`} key={movie.id} className="div-sect" data-testid="movie-card">
                                 <li className="p-4 mb-2 text-white">
                                     <div className="movie-box">
                                         <img src={favorite} className="favorite-btn float-right relative top-12 mr-5" />
@@ -141,7 +142,7 @@ export const MovieCard = () => {
                                         <p className="text-sm text-grey font-medium" data-testid="movie-release-date">{movie.releaseDate}</p>
                                     </div>
                                 </li>
-                            </div>
+                            </Link>
                         ))}
                     </ol>
                 </div>
