@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import IMOB from "./../../../assets/IMOB.png";
 import cherry from "./../../../assets/strawberry.png"
 import favorite from "./../../../assets/Favorite.png";
+import axios from "axios";
 import { Icon } from "../../atoms/Icons";
 import "./index.scss"
 
