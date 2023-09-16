@@ -8,6 +8,14 @@ import "./index.scss"
 
 export const MovieCard = () => {
     const [movies, setMovies] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [displayedMovies, setDisplayedMovies] = useState([]);
+    const [isFavorite, setIsFavorite] = useState();
+
+    const toggleFavorite = () => {
+        setIsFavorite(red);
+    };
+
 
     const countryAbbreviations = {
         "United States of America": "USA",
@@ -62,6 +70,42 @@ export const MovieCard = () => {
     }, []);
 
 
+    useEffect(() => {
+        // Fetch the default 10 movies
+        const fetchDefaultMovies = async () => {
+            try {
+                const apiKey = import.meta.env.VITE_API_KEY;
+                const response = await axios.get(
+                    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&language=en-US&page=1`
+                );
+
+                const randomMovies = response.data.results.slice(0, 10);
+                setMovies(randomMovies);
+                setDisplayedMovies(randomMovies); // Set default movies
+                const randomMovie =
+                    randomMovies[Math.floor(Math.random() * randomMovies.length)];
+                setBackgroundMovie(randomMovie);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchDefaultMovies();
+    }, []);
+
+    // When searchQuery changes, update displayed movies
+    useEffect(() => {
+        if (searchQuery) {
+            const filteredMovies = movies.filter((movie) =>
+                movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setDisplayedMovies(filteredMovies);
+        } else {
+            // If search query is empty, display default movies
+            setDisplayedMovies(movies);
+        }
+    }, [searchQuery, movies]);
+
     return (
         <>
             <div className=" movie-card-header text-black flex justify-between items-center">
@@ -75,11 +119,11 @@ export const MovieCard = () => {
             <div className="flex gap-x-8 main-div mx-24 max-[500px]:mx-0 max-[768px]:mx-0 max-[980px]:mx-10">
                 <div className="w-full p-2 overflow-x-auto">
                     <ol className="grid grid-cols-4 max-[980px]:grid-cols-3 max-[768px]:grid-cols-2 max-[500px]:grid-cols-1 gap-6 max-[982px]:gap-2 ">
-                        {movies.map((movie) => (
+                        {displayedMovies.map((movie) => (
                             <div className="div-sect" key={movie.id} data-testid="movie-card">
                                 <li className="p-4 mb-2 text-white">
                                     <div className="movie-box">
-                                        <img src={favorite} className="float-right relative top-12 mr-5" />
+                                        <img src={favorite} style={{ background: isFavorite }} onClick={toggleFavorite} className="float-right relative top-12 mr-5" />
                                         <img
                                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                             alt={movie.title}

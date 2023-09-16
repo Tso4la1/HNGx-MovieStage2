@@ -7,9 +7,10 @@ import "./index.scss";
 import Play from "./../../../assets/Play1.png";
 
 
-export const Hero = () => {
+export const Hero = ({ onSearch }) => {
     const [movies, setMovies] = useState([]);
     const [backgroundMovie, setBackgroundMovie] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -19,11 +20,21 @@ export const Hero = () => {
                     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&language=en-US&page=1`
                 );
 
-                const randomMovies = response.data.results.slice(0, 10);
+                let randomMovies = response.data.results.slice(0, 10);
+                // setMovies(randomMovies);
+
+
+                // Filter movies based on the search query
+                if (searchQuery) {
+                    randomMovies = randomMovies.filter((movie) =>
+                        movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+                    );
+                }
+
                 setMovies(randomMovies);
 
-                // Choose a random movie to set as the background
-                const randomMovie = randomMovies[Math.floor(Math.random() * randomMovies.length)];
+                const randomMovie =
+                    randomMovies[Math.floor(Math.random() * randomMovies.length)];
                 setBackgroundMovie(randomMovie);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -31,7 +42,7 @@ export const Hero = () => {
         };
 
         fetchMovies();
-    }, []);
+    }, [searchQuery]);
 
     return (
         <div className="home-page">
@@ -45,7 +56,7 @@ export const Hero = () => {
                     // height: '90vh',
                 }}
             >
-                <NavBar />
+                <NavBar onSearch={onSearch} />
                 {backgroundMovie && (
                     <div className='hero-details'>
                         <div className="background-movie-details">
