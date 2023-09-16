@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import { Home, SearchPage } from './components/pages';
+import { Home, MovieList } from './components/pages';
 
 
 const router = createBrowserRouter([
@@ -9,8 +9,8 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/search",
-    element: <SearchPage />,
+    path: "/movie",
+    element: <MovieList />,
   },
 ]);
 
