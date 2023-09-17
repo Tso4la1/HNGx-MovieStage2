@@ -1,95 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Icon } from '../../atoms/Icons';
-import './index.scss';
-import logo from './../../../assets/tv.png';
+import React, { useContext } from "react"
+import { Logo, SignInProfile } from "../../Molecules";
 
-const apiUrl = 'https://api.themoviedb.org/3';
-const apiKey = '5875295ffa7a025202b7685ccfb682ed';
+import { Context } from "../../../context/ContextProvider"
+import { SearchModal } from "../../../Components/Organisms/SearchModal/index"
+import { Link } from "react-router-dom"
 
-export const NavBar = ({ onSearch }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  useEffect(() => {
-    if (searchQuery === '') {
-      setShowSuggestions(false);
-      return;
+
+export const Navbar = () => {
+    const { openModal, setOpenModal, scrollHeight } = useContext(Context)
+
+    const handleFormClick = () => {
+        console.log("form")
+        setOpenModal(true)
     }
+    return (
+        <nav className={`${scrollHeight > 400 && 'bg-site-red/80'} transition-colors sticky z-10 top-0 w-full flex py-4 px-4 items-center gap-x-4 md:justify-between md:px-10 `}>
+            {openModal && <SearchModal />}
+            <Link to='/' className='flex items-center justify-center gap-x-2'>
+                <Logo className='w-16' />
+                <span className='hidden md:block text-white font-medium'>MovieBox</span>
+            </Link>
+            <div onClick={handleFormClick} className='ml-auto md:ml-0 flex items-center justify-center relative md:w-2/5 md:h-10'>
 
-    const timer = setTimeout(async () => {
-      const response = await fetch(
-        `${apiUrl}/search/movie?api_key=${apiKey}&query=${searchQuery}`
-      );
-      const data = await response.json();
-      setSearchResults(data.results);
-      setShowSuggestions(true);
-      onSearch(searchQuery);
-    }, 300); // Adjust the debounce delay as needed (e.g., 300ms)
+                <input
+                    type='text'
+                    placeholder="What do you want to watch"
+                    className='border-2 rounded hidden md:block w-full h-full pl-4 pr-12 '
+                />
 
-    return () => clearTimeout(timer); // Clear the timer on unmount and input changes
-  }, [searchQuery, onSearch]);
+                <button className="text-site-red md:absolute right-5">
+                </button>
+            </div>
+            <div className='flex items-center justify-center'>
+                <button className='block text-white font-medium'>Sign in</button>
+                <SignInProfile className='w-20' />
+            </div>
+        </nav>
+    )
+}
 
-  const handleClick = () => {
-    window.location.reload();
-  };
 
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
 
-  return (
-    <>
-      <nav className="navbar flex justify-between items-center mx-24 max-[980px]:mx-10 max-[500px]:mx-4 ">
-        <Link className="logo flex items-center" onClick={handleClick} to="/">
-          <img src={logo} alt="MovieBox Logo" />
-          <p className="logo-name">MovieBox</p>
-        </Link>
-        <div className="search">
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="search"
-              placeholder="What do you want to watch"
-              className="input"
-              id="search"
-              value={searchQuery}
-              onChange={handleInputChange}
-            />
-          </form>
-          <Icon name="search" className="search-icon " />
-          <div className='search-result-container'>
-            {showSuggestions && (
-              <div className="search-results">
-                {searchResults.map((movie) => (
-                  <Link
-                    key={movie.id}
-                    to={`/movies/${movie.id}`}
-                    className="search-result flex"
-                    rel="noopener noreferrer"
-                  >
-                    <div className="search-result-content">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        alt={movie.title}
-                        className="search-result-image"
-                      />
-                      <div className='search-result-details'>
-                        <h2>{movie.title}</h2>
-                        <p>{movie.release_date}</p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="signin-menu flex items-center">
-          <p className="sign-in">Sign in</p>
-          <Icon name="menu" />
-        </div>
-      </nav>
-    </>
-  );
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

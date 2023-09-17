@@ -1,61 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-const apiUrl = 'https://api.themoviedb.org/3';
-const apiKey = '5875295ffa7a025202b7685ccfb682ed';
-
-
+import React, { Fragment, useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { Layout } from "../../../layout/Layout"
+import { client } from "../../../utils/axios"
+import { MovieInfo } from "../../../Components/Organisms/MovieInfo/index"
+import { MovieCard } from "../../../Components/Organisms/MovieCard/index"
 
 export const MovieDetails = () => {
-    const { id } = useParams();
-    const [movie, setMovie] = useState(null);
-    const [trailerUrl, setTrailerUrl] = useState('');
+	const [movieDetails, setMovieDetails] = useState({})
+	const [isLoading, setIsLoading] = useState(true)
+	const [similar, setSimilar] = useState([])
+	const [similarLoading, setSimilarLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchMovieDetails = async () => {
-            try {
-                const response = await fetch(
-                    `${apiUrl}/movie/${id}?api_key=${apiKey}`
-                );
-                const data = await response.json();
-                setMovie(data);
+	const params = useParams()
+	const { movieID } = params
 
+	useEffect(() => {
+		setMovieDetails({})
+		setIsLoading(true)
 
-                const trailerVideoUrl = await fetchTrailerVideoUrl(data.title);
-                setTrailerUrl(trailerVideoUrl);
-            } catch (error) {
-                console.error('Error fetching movie details:', error);
-            }
-        };
-
-        fetchMovieDetails();
-    }, [id]);
-
-    if (!movie) {
-        return <div text-black>Loading...</div>;
-    }
-
-    return (
-        <div className="movie-details text-black">
-
-            {trailerUrl && (
-                <div className="trailer-video">
-                    <iframe
-                        width="560"
-                        height="315"
-                        src={trailerUrl}
-                        title={`Trailer for ${movie.title}`}
-                        frameBorder="0"
-                        allowFullScreen
-                    ></iframe>
-                </div>
-            )}
+		client
+			.get(movieID)
+			.then((res) => {
+				setMovieDetails(res.data)
+				setIsLoading(false)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}, [movieID])
 
 
 
-            <h1>{movie.title}</h1>
-            <p>{movie.release_date}</p>
-            <p>{movie.overview}</p>
-        </div>
-    );
-};
+	useEffect(() => {
+		setSimilar([])
+		setSimilarLoading(true)
+		client
+			.get(`${movieID}/similar`)
+			.then((res) => {
+				setSimilar(res.data.results.slice(0, 10))
+				setSimilarLoading(false)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}, [movieID])
+
+	return (
+		<Layout>
+			{isLoading ? (
+				<div className='flex items-center justify-center w-full min-h-[400px]'>
+
+				</div>
+			) : (
+				<div className='w-full'>
+					<MovieInfo details={movieDetails} />
+				</div>
+			)}
+			{similarLoading ? (
+				<div className='flex items-center justify-center w-full min-h-[400px]'>
+
+				</div>
+			) : (
+				<div className="w-[80%] py-20 mx-auto md:w-4/5 space-y-4">
+					<h2 className="text-3xl font-medium">Similar</h2>
+					<div className=' gap-x-4 gap-y-20 flex flex-col md:flex-row flex-wrap '>
+						{similar.map((movie) => (
+							<Fragment key={movie.id}>
+
+								<MovieCard movie={movie} />
+							</Fragment>
+						))}
+					</div>
+				</div>
+			)}
+		</Layout>
+	)
+}

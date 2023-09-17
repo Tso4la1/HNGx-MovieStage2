@@ -1,2 +1,2 @@
-export * from "./HomePage";
-export * from "./MovieDetails";
+export * from "./Homepage";
+export * from "./ReactYouTube";
